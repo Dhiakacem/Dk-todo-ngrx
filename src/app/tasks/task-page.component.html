@@ -1,5 +1,5 @@
 <nz-layout class="page">
-  <nz-header>
+  <nz-header class="app-header">
     <div class="topbar">
       <div class="brand">
         <span class="logo">✔</span>
@@ -8,14 +8,16 @@
           <p nz-typography>Une todo list simple avec NgRx</p>
         </div>
       </div>
+
       <div class="user" *ngIf="user$ | async as user">
         <span class="email">{{ user.email }}</span>
-        <button nz-button nzType="default" nzSize="small" (click)="logout()">
+        <button nz-button nzType="primary"  (click)="logout()">
           Se déconnecter
         </button>
       </div>
     </div>
   </nz-header>
+
 
   <nz-content>
     <div class="content" nz-row [nzGutter]="16">

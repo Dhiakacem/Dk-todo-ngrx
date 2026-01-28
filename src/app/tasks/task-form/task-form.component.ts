@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {NgZorroSharedModule} from '../../shared/ng-zorro.module';
 import {Task, TaskPriority} from '../../models/task.model';
+import {fr_FR, NZ_I18N} from 'ng-zorro-antd/i18n';
 
 
 @Component({
@@ -10,7 +11,11 @@ import {Task, TaskPriority} from '../../models/task.model';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, NgZorroSharedModule],
   templateUrl: './task-form.component.html',
-  styleUrl: './task-form.component.scss'
+  styleUrl: './task-form.component.scss',
+  providers: [
+    { provide: NZ_I18N, useValue: fr_FR },
+    DatePipe
+  ]
 })
 export class TaskFormComponent implements OnChanges {
   @Input() editingTask: Task | null = null;

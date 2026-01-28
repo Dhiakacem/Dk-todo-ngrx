@@ -18,15 +18,15 @@ export class LoginComponent {
   private readonly store = inject(Store);
   private readonly router = inject(Router);
 
-  form = this.fb.nonNullable.group({
+  public form = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]]
   });
 
-  get email() {
+  protected get email() {
     return this.form.controls.email;
   }
 
-  submit(): void {
+  protected submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
