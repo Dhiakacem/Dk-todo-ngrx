@@ -50,7 +50,7 @@ export class TaskFormComponent implements OnChanges {
     return isNaN(parsed.getTime()) ? null : parsed;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+ public ngOnChanges(changes: SimpleChanges): void {
     if (changes['editingTask']) {
       const task = this.editingTask;
       if (task) {
@@ -73,7 +73,7 @@ export class TaskFormComponent implements OnChanges {
     }
   }
 
-  submit(): void {
+ protected submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;

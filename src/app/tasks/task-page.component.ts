@@ -31,33 +31,33 @@ export class TaskPageComponent {
 
   editingTask: Task | null = null;
 
-  logout(): void {
+  protected logout(): void {
     this.store.dispatch(AuthActions.logout());
     this.router.navigate(['/login']);
   }
 
-  handleCreate(task: Omit<Task, 'id' | 'createdAt'>): void {
+  protected handleCreate(task: Omit<Task, 'id' | 'createdAt'>): void {
     this.store.dispatch(TaskActions.addTask({ task }));
   }
 
-  handleUpdate(task: Task): void {
+  protected handleUpdate(task: Task): void {
     this.store.dispatch(TaskActions.updateTask({ task }));
     this.editingTask = null;
   }
 
-  startEdit(task: Task): void {
+  protected startEdit(task: Task): void {
     this.editingTask = task;
   }
 
-  cancelEdit(): void {
+  protected cancelEdit(): void {
     this.editingTask = null;
   }
 
-  toggleCompleted(task: Task): void {
+  protected toggleCompleted(task: Task): void {
     this.store.dispatch(TaskActions.toggleTaskCompleted({ id: task.id }));
   }
 
-  delete(task: Task): void {
+  protected delete(task: Task): void {
     this.store.dispatch(TaskActions.deleteTask({ id: task.id }));
   }
 }
