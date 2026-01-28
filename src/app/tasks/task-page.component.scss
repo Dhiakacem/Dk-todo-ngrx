@@ -1,0 +1,102 @@
+.page {
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #ffffff;
+}
+
+.brand .logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.brand p {
+  margin: 0;
+  opacity: 0.8;
+  font-size: 0.85rem;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e5e7eb;
+}
+
+.user .email {
+  font-weight: 500;
+}
+
+.content {
+  padding: 24px 0 32px;
+}
+
+.left,
+.right {
+  margin-bottom: 16px;
+}
+
+.right {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 20px 16px;
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(148, 163, 184, 0.12);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.summary h2 {
+  margin: 0;
+}
+
+tbody tr.completed {
+  background-color: #f3f4ff;
+}
+
+tbody tr.completed td {
+  text-decoration: line-through;
+  color: #6b7280;
+}
+
+@media (max-width: 991px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    height: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .content {
+    padding-top: 16px;
+  }
+}

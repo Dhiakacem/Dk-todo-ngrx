@@ -1,0 +1,76 @@
+<div>
+  <h2 nz-typography>{{ editingTask ? 'Modifier la tâche' : 'Nouvelle tâche' }}</h2>
+
+  <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="submit()">
+    <nz-form-item>
+      <nz-form-label nzFor="title" nzRequired>Titre</nz-form-label>
+      <nz-form-control
+        [nzValidateStatus]="form.controls.title"
+        nzErrorTip="Le titre est obligatoire (100 caractères max)."
+      >
+        <input nz-input id="title" type="text" formControlName="title" />
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="description">Description</nz-form-label>
+      <nz-form-control>
+        <textarea
+          nz-input
+          id="description"
+          rows="3"
+          formControlName="description"
+        ></textarea>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="priority" nzRequired>Priorité</nz-form-label>
+          <nz-form-control>
+            <nz-select id="priority" formControlName="priority">
+              <nz-option
+                *ngFor="let p of priorities"
+                [nzValue]="p"
+                [nzLabel]="'Priorité ' + p"
+              ></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div nz-col [nzSpan]="12">
+        <nz-form-item>
+          <nz-form-label nzFor="dueDate" nzRequired>Échéance</nz-form-label>
+          <nz-form-control
+            [nzValidateStatus]="form.controls.dueDate"
+            nzErrorTip="La date d'échéance est obligatoire."
+          >
+            <nz-date-picker
+              id="dueDate"
+              formControlName="dueDate"
+              nzFormat="dd/MM/yyyy"
+            ></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button nz-button nzType="primary" type="submit">
+        {{ editingTask ? 'Enregistrer' : 'Ajouter la tâche' }}
+      </button>
+      <button
+        *ngIf="editingTask"
+        nz-button
+        nzType="default"
+        type="button"
+        (click)="cancelEdit.emit()"
+      >
+        Annuler
+      </button>
+    </div>
+  </form>
+</div>
+

@@ -1,0 +1,21 @@
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+:host {
+  display: block;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 20px 16px;
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.08),
+    0 0 0 1px rgba(148, 163, 184, 0.12);
+}
+
+h2[nz-typography] {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
