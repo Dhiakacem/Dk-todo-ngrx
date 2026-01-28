@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, inject } from '@angular/core';
-import {CommonModule, DatePipe} from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {NgZorroSharedModule} from '../../shared/ng-zorro.module';
 import {Task, TaskPriority} from '../../models/task.model';
@@ -24,15 +24,31 @@ export class TaskFormComponent implements OnChanges {
   @Output() cancelEdit = new EventEmitter<void>();
 
   private readonly fb = inject(FormBuilder);
+  private readonly datePipe = inject(DatePipe);
   readonly priorities: TaskPriority[] = [1, 2, 3, 4, 5];
 
   form = this.fb.nonNullable.group({
     title: ['', [Validators.required, Validators.maxLength(100)]],
     description: ['', [Validators.maxLength(500)]],
     priority: 3 as TaskPriority,
-    dueDate: null as Date | null,
+    dueDate: this.fb.control<Date | null>(null, { validators: [Validators.required] }),
     completed: false
   });
+
+  private parseDate(value: string | null | undefined): Date | null {
+    if (!value) {
+      return null;
+    }
+
+    const parts = value.split('-').map(Number);
+    if (parts.length === 3 && parts.every(n => !Number.isNaN(n))) {
+      const [year, month, day] = parts;
+      return new Date(year, month - 1, day);
+    }
+
+    const parsed = new Date(value);
+    return isNaN(parsed.getTime()) ? null : parsed;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['editingTask']) {
@@ -42,7 +58,7 @@ export class TaskFormComponent implements OnChanges {
           title: task.title,
           description: task.description,
           priority: task.priority,
-          dueDate: task.dueDate ? new Date(task.dueDate) : null,
+          dueDate: this.parseDate(task.dueDate),
           completed: task.completed
         });
       } else {
@@ -64,9 +80,10 @@ export class TaskFormComponent implements OnChanges {
     }
 
     const value = this.form.getRawValue();
+
     const dueDate =
       value.dueDate instanceof Date
-        ? value.dueDate.toISOString()
+        ? this.datePipe.transform(value.dueDate, 'yyyy-MM-dd') ?? ''
         : (value.dueDate as unknown as string);
 
     const base = {

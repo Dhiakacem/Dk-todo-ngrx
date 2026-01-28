@@ -23,6 +23,11 @@
   gap: 12px;
   color: white;
 }
+
+.titles h1[nz-typography],
+.titles p[nz-typography] {
+  color: #ffffff !important;
+}
 .page {
   min-height: 100vh;
 }
