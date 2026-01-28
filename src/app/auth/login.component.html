@@ -1,0 +1,32 @@
+<nz-layout class="auth-layout">
+  <nz-content>
+    <div class="auth-card">
+      <h1 nz-typography>Bienvenue</h1>
+      <p nz-typography>Connectez-vous avec votre email pour accéder à vos tâches.</p>
+
+      <form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="submit()">
+        <nz-form-item>
+          <nz-form-label nzFor="email" nzRequired>Email</nz-form-label>
+          <nz-form-control
+            [nzValidateStatus]="email"
+            nzErrorTip="Veuillez saisir un email valide."
+          >
+            <input
+              nz-input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="vous@example.com"
+              autocomplete="email"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <button nz-button nzType="primary" nzBlock type="submit">
+          Se connecter
+        </button>
+      </form>
+    </div>
+  </nz-content>
+</nz-layout>
+

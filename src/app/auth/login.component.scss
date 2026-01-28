@@ -1,0 +1,33 @@
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top left, #e0f2ff 0, #f5f5f7 45%, #fdf2ff 100%);
+}
+
+.auth-card {
+  max-width: 420px;
+  width: 100%;
+  margin: 200px;
+  padding: 32px 28px 28px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(148, 163, 184, 0.15);
+}
+
+.auth-card h1 {
+  margin-bottom: 0.25rem;
+}
+
+.auth-card p {
+  margin-bottom: 1.5rem;
+  color: #6b7280;
+}
+
+form[nz-form] {
+  margin-top: 0.5rem;
+}
+
